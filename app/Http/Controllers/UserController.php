@@ -29,7 +29,7 @@ class UserController extends Controller
             $request->session()->regenerate();
         }
         
-        return redirect('/');
+        return redirect('/home');
     }
 
     public function logout(Request $request) {

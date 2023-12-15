@@ -20,7 +20,7 @@ use App\Http\Controllers\UserController;
 //     return view('welcome');
 // });
 
-Route::get('/', function () {
+Route::get('/home', function () {
     $posts = [];
 
     if (auth()->check()) {
@@ -31,11 +31,17 @@ Route::get('/', function () {
     return view('home', ['posts' => $posts]);
 });
 
+Route::get('', function () {
+    return view('start');
+});
+
 Route::post('/register', [UserController::class, 'register']);
 
 Route::post('/login', [UserController::class, 'login']);
 
 Route::post('/logout', [UserController::class, 'logout']);
+
+Route::get('/add-post', [PostController::class, 'showAddPostScreen']);
 
 Route::post('/create-post', [PostController::class, 'createPost']);
 

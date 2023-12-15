@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    public function showAddPostScreen() {
+        return view('add-post');
+    }
+
     public function createPost(Request $request) {
         $incomingFields = $request->validate([
             'title' => 'required',
@@ -16,12 +20,12 @@ class PostController extends Controller
 
         Post::create($incomingFields);
         
-        return redirect('/');
+        return redirect('/home');
     }
 
     public function showEditPostScreen(Post $post) {
         if (auth()->user()->id !== $post['user_id']) {
-            return redirect('/');
+            return redirect('/home');
         }
 
         return view('edit-post', ['post' => $post]);
@@ -29,7 +33,7 @@ class PostController extends Controller
 
     public function updatePost(Post $post, Request $request) {
         if (auth()->user()->id !== $post['user_id']) {
-            return redirect('/');
+            return redirect('/home');
         }
 
         $incomingFields = $request->validate([
@@ -39,7 +43,7 @@ class PostController extends Controller
 
         $post->update($incomingFields);
         
-        return redirect('/');
+        return redirect('/home');
     }
 
     public function deletePost(Post $post) {
@@ -47,6 +51,6 @@ class PostController extends Controller
             $post->delete();
         }
 
-        return redirect('/');
+        return redirect('/home');
     }
 }

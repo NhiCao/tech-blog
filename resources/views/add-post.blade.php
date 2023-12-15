@@ -41,15 +41,15 @@
             </div>
         </div>
     </nav>
-    
+
     <div style="padding-top: 100px; padding-left: 250px; padding-right: 250px;">
-        <h2 style="color: white">Edit post</h2>
+        <h2 style="color: white">Add post</h2>
         <br>
-        <form action="/save-post/{{$post['id']}}" method="POST">
+        <form action="/create-post" method="POST">
             @csrf
-            <input type="text" class="form-control" name="title" value={{$post['title']}}><br>
-            <textarea class="form-control" name="body">{{$post['body']}}</textarea><br>
-            <button class="btn btn-primary mb-2">Save</button>
+            <input type="text" class="form-control" name="title" placeholder="title"><br>
+            <textarea class="form-control" name="body" placeholder="body"></textarea><br>
+            <button class="btn btn-primary mb-2">Add</button>
         </form>
     </div>
 
